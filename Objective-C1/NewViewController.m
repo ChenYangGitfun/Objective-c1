@@ -23,6 +23,12 @@
     [BUTTON setTitle:@"操作数据库" forState:UIControlStateNormal];
     [BUTTON addTarget:self action:@selector(gotoSQL) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:BUTTON];
+    UIButton* BUTTON1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    BUTTON1.frame = CGRectMake(100, 400, 100, 50);
+    BUTTON1.backgroundColor = [UIColor redColor];
+    [BUTTON1 setTitle:@"发送通知" forState:UIControlStateNormal];
+    [BUTTON1 addTarget:self action:@selector(sendNew) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:BUTTON1];
     // Do any additional setup after loading the view.
 }
 
@@ -39,7 +45,14 @@
     SQLViewController* vc = [[SQLViewController alloc]init];
     [self presentViewController:vc animated:YES completion:nil];
 }
-
+- (void)sendNew {
+    //通知中心发送通知
+    NSMutableDictionary* dic =[NSMutableDictionary dictionary];
+    [dic setValue:@"bob" forKey:@"name"];
+    [dic setValue:@"12" forKey:@"age"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"通知" object:@"1" userInfo:dic];
+    
+}
 /*
 #pragma mark - Navigation
 
